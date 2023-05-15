@@ -76,6 +76,10 @@ jobs:
             profile: mysql
           - test: test-cli
             profile: mysql
+          - test: test-api
+            profile: postgres
+          - test: test-cli
+            profile: postgres
           - test: test-cron
             profile: minimal
           - test: test-examples
