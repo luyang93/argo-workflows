@@ -1886,7 +1886,7 @@ type WorkflowStatus struct {
 	// ArtifactGCStatus maintains the status of Artifact Garbage Collection
 	ArtifactGCStatus *ArtGCStatus `json:"artifactGCStatus,omitempty" protobuf:"bytes,19,opt,name=artifactGCStatus"`
 
-	Emoticon Emoticon `json:"Emoticon,omitempty" protobuf:"bytes,20,opt,name=Emoticon,casttype=Emoticon"`
+	Emoticon Emoticon `json:"emoticon,omitempty" protobuf:"bytes,20,opt,name=emoticon,casttype=Emoticon"`
 }
 
 func (ws *WorkflowStatus) IsOffloadNodeStatus() bool {

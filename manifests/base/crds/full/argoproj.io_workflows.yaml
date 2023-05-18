@@ -18936,8 +18936,6 @@ spec:
             type: object
           status:
             properties:
-              Emoticon:
-                type: string
               artifactGCStatus:
                 properties:
                   notSpecified:
@@ -19212,6 +19210,8 @@ spec:
                       type: string
                   type: object
                 type: array
+              emoticon:
+                type: string
               estimatedDuration:
                 type: integer
               finishedAt:

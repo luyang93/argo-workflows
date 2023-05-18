@@ -2087,7 +2087,7 @@ message WorkflowStatus {
   // ArtifactGCStatus maintains the status of Artifact Garbage Collection
   optional ArtGCStatus artifactGCStatus = 19;
 
-  optional string Emoticon = 20;
+  optional string emoticon = 20;
 }
 
 // WorkflowStep is a reference to a template to execute in a series of step
