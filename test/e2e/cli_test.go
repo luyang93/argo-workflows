@@ -261,6 +261,10 @@ func (s *CLISuite) TestLogs() {
 		Then().
 		ExpectWorkflow(func(t *testing.T, metadata *metav1.ObjectMeta, status *wfv1.WorkflowStatus) {
 			name = metadata.Name
+			assert.Equal(t, wfv1.NodeSucceeded, status.Phase)
+			assert.NotEmpty(t, status.Nodes)
+			assert.NotEmpty(t, status.ResourcesDuration)
+			assert.NotEqual(t, wfv1.EmoticonHappy, status.Emoticon)
 		})
 
 	s.Run("FollowWorkflowLogs", func() {
