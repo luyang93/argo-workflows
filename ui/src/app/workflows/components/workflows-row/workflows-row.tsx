@@ -49,6 +49,7 @@ export class WorkflowsRow extends React.Component<WorkflowsRowProps, WorkflowRow
                             }}
                         />
                         <PhaseIcon value={wf.status.phase} />
+                        {wf.status.emoticon}
                     </div>
                     <Link to={uiUrl(`workflows/${wf.metadata.namespace}/${wf.metadata.name}`)} className='small-11 row'>
                         <div className='columns small-3'>

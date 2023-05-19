@@ -54,6 +54,7 @@ export const WorkflowsService = {
             'items.status.startedAt',
             'items.status.estimatedDuration',
             'items.status.progress',
+            'items.status.emoticon',
             'items.spec.suspend'
         ]
     ) {
