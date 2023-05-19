@@ -248,6 +248,21 @@ func (s *CLISuite) TestTokenArg() {
 	})
 }
 
+func (s *CLISuite) TestBasicWorkflow() {
+	s.Given().
+		Workflow(`@smoke/basic.yaml`).
+		When().
+		SubmitWorkflow().
+		WaitForWorkflow(20 * time.Second).
+		Then().
+		ExpectWorkflow(func(t *testing.T, metadata *metav1.ObjectMeta, status *wfv1.WorkflowStatus) {
+			assert.Equal(t, wfv1.WorkflowSucceeded, status.Phase)
+			assert.NotEmpty(t, status.Nodes)
+			assert.NotEmpty(t, status.ResourcesDuration)
+			assert.NotEqual(t, wfv1.EmoticonHappy, status.Emoticon)
+		})
+}
+
 func (s *CLISuite) TestLogs() {
 	var name string
 	s.Given().

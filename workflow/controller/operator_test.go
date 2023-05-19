@@ -2424,6 +2424,7 @@ func TestEmoticon(t *testing.T) {
 	woc.operate(ctx)
 
 	woc.markWorkflowSuccess(ctx)
+	assert.Equal(t, wfv1.WorkflowSucceeded, woc.wf.Status.Phase)
 	assert.Equal(t, wfv1.EmoticonSad, woc.wf.Status.Emoticon)
 }
 
