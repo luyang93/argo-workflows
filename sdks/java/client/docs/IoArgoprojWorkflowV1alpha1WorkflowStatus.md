@@ -8,11 +8,11 @@ WorkflowStatus contains overall status information about a workflow
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**emoticon** | **String** |  |  [optional]
 **artifactGCStatus** | [**IoArgoprojWorkflowV1alpha1ArtGCStatus**](IoArgoprojWorkflowV1alpha1ArtGCStatus.md) |  |  [optional]
 **artifactRepositoryRef** | [**IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus**](IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus.md) |  |  [optional]
 **compressedNodes** | **String** | Compressed and base64 decoded Nodes map |  [optional]
 **conditions** | [**List&lt;IoArgoprojWorkflowV1alpha1Condition&gt;**](IoArgoprojWorkflowV1alpha1Condition.md) | Conditions is a list of conditions the Workflow may have |  [optional]
+**emoticon** | **String** |  |  [optional]
 **estimatedDuration** | **Integer** | EstimatedDuration in seconds. |  [optional]
 **finishedAt** | **java.time.Instant** |  |  [optional]
 **message** | **String** | A human readable message indicating details about why the workflow is in this condition. |  [optional]

@@ -10606,7 +10606,6 @@ with argo_workflows.ApiClient(configuration) as api_client:
                 ),
             ),
             status=IoArgoprojWorkflowV1alpha1WorkflowStatus(
-                emoticon="emoticon_example",
                 artifact_gc_status=IoArgoprojWorkflowV1alpha1ArtGCStatus(
                     not_specified=True,
                     pods_recouped={
@@ -10746,6 +10745,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                         type="type_example",
                     ),
                 ],
+                emoticon="emoticon_example",
                 estimated_duration=1,
                 finished_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 message="message_example",
@@ -37813,7 +37813,6 @@ with argo_workflows.ApiClient(configuration) as api_client:
                 ),
             ),
             status=IoArgoprojWorkflowV1alpha1WorkflowStatus(
-                emoticon="emoticon_example",
                 artifact_gc_status=IoArgoprojWorkflowV1alpha1ArtGCStatus(
                     not_specified=True,
                     pods_recouped={
@@ -37953,6 +37952,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                         type="type_example",
                     ),
                 ],
+                emoticon="emoticon_example",
                 estimated_duration=1,
                 finished_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 message="message_example",

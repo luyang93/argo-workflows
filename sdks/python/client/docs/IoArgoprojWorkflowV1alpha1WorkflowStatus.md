@@ -5,11 +5,11 @@ WorkflowStatus contains overall status information about a workflow
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**emoticon** | **str** |  | [optional] 
 **artifact_gc_status** | [**IoArgoprojWorkflowV1alpha1ArtGCStatus**](IoArgoprojWorkflowV1alpha1ArtGCStatus.md) |  | [optional] 
 **artifact_repository_ref** | [**IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus**](IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus.md) |  | [optional] 
 **compressed_nodes** | **str** | Compressed and base64 decoded Nodes map | [optional] 
 **conditions** | [**[IoArgoprojWorkflowV1alpha1Condition]**](IoArgoprojWorkflowV1alpha1Condition.md) | Conditions is a list of conditions the Workflow may have | [optional] 
+**emoticon** | **str** |  | [optional] 
 **estimated_duration** | **int** | EstimatedDuration in seconds. | [optional] 
 **finished_at** | **datetime** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional] 
 **message** | **str** | A human readable message indicating details about why the workflow is in this condition. | [optional] 

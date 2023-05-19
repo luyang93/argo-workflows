@@ -11386,9 +11386,6 @@
       "description": "WorkflowStatus contains overall status information about a workflow",
       "type": "object",
       "properties": {
-        "Emoticon": {
-          "type": "string"
-        },
         "artifactGCStatus": {
           "description": "ArtifactGCStatus maintains the status of Artifact Garbage Collection",
           "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArtGCStatus"
@@ -11407,6 +11404,9 @@
           "items": {
             "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Condition"
           }
+        },
+        "emoticon": {
+          "type": "string"
         },
         "estimatedDuration": {
           "description": "EstimatedDuration in seconds.",

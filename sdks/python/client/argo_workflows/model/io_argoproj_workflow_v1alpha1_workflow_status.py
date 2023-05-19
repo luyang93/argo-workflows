@@ -103,11 +103,11 @@ class IoArgoprojWorkflowV1alpha1WorkflowStatus(ModelNormal):
         """
         lazy_import()
         return {
-            'emoticon': (str,),  # noqa: E501
             'artifact_gc_status': (IoArgoprojWorkflowV1alpha1ArtGCStatus,),  # noqa: E501
             'artifact_repository_ref': (IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus,),  # noqa: E501
             'compressed_nodes': (str,),  # noqa: E501
             'conditions': ([IoArgoprojWorkflowV1alpha1Condition],),  # noqa: E501
+            'emoticon': (str,),  # noqa: E501
             'estimated_duration': (int,),  # noqa: E501
             'finished_at': (datetime,),  # noqa: E501
             'message': (str,),  # noqa: E501
@@ -130,11 +130,11 @@ class IoArgoprojWorkflowV1alpha1WorkflowStatus(ModelNormal):
 
 
     attribute_map = {
-        'emoticon': 'Emoticon',  # noqa: E501
         'artifact_gc_status': 'artifactGCStatus',  # noqa: E501
         'artifact_repository_ref': 'artifactRepositoryRef',  # noqa: E501
         'compressed_nodes': 'compressedNodes',  # noqa: E501
         'conditions': 'conditions',  # noqa: E501
+        'emoticon': 'emoticon',  # noqa: E501
         'estimated_duration': 'estimatedDuration',  # noqa: E501
         'finished_at': 'finishedAt',  # noqa: E501
         'message': 'message',  # noqa: E501
@@ -192,11 +192,11 @@ class IoArgoprojWorkflowV1alpha1WorkflowStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            emoticon (str): [optional]  # noqa: E501
             artifact_gc_status (IoArgoprojWorkflowV1alpha1ArtGCStatus): [optional]  # noqa: E501
             artifact_repository_ref (IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus): [optional]  # noqa: E501
             compressed_nodes (str): Compressed and base64 decoded Nodes map. [optional]  # noqa: E501
             conditions ([IoArgoprojWorkflowV1alpha1Condition]): Conditions is a list of conditions the Workflow may have. [optional]  # noqa: E501
+            emoticon (str): [optional]  # noqa: E501
             estimated_duration (int): EstimatedDuration in seconds.. [optional]  # noqa: E501
             finished_at (datetime): Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.. [optional]  # noqa: E501
             message (str): A human readable message indicating details about why the workflow is in this condition.. [optional]  # noqa: E501
@@ -292,11 +292,11 @@ class IoArgoprojWorkflowV1alpha1WorkflowStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            emoticon (str): [optional]  # noqa: E501
             artifact_gc_status (IoArgoprojWorkflowV1alpha1ArtGCStatus): [optional]  # noqa: E501
             artifact_repository_ref (IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus): [optional]  # noqa: E501
             compressed_nodes (str): Compressed and base64 decoded Nodes map. [optional]  # noqa: E501
             conditions ([IoArgoprojWorkflowV1alpha1Condition]): Conditions is a list of conditions the Workflow may have. [optional]  # noqa: E501
+            emoticon (str): [optional]  # noqa: E501
             estimated_duration (int): EstimatedDuration in seconds.. [optional]  # noqa: E501
             finished_at (datetime): Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.. [optional]  # noqa: E501
             message (str): A human readable message indicating details about why the workflow is in this condition.. [optional]  # noqa: E501
