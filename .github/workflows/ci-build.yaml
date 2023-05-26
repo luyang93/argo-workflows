@@ -74,8 +74,12 @@ jobs:
             profile: minimal
           - test: test-api
             profile: mysql
+          - test: test-api
+            profile: postgres
           - test: test-cli
             profile: mysql
+          - test: test-cli
+            profile: postgres
           - test: test-cron
             profile: minimal
           - test: test-examples
@@ -158,19 +162,19 @@ jobs:
       - name: Run tests ${{matrix.test}}
         run: make ${{matrix.test}} E2E_SUITE_TIMEOUT=20m STATIC_FILES=false
       - if: ${{ failure() }}
-        name: MinIO/MySQL deployment
+        name: MinIO/MySQL/PostgreSQL deployment
         run: |
           set -eux
           kubectl get deploy
           kubectl describe deploy
       - if: ${{ failure() }}
-        name: MinIO/MySQL pods
+        name: MinIO/MySQL/PostgreSQL pods
         run: |
           set -eux
           kubectl get pods -l '!workflows.argoproj.io/workflow'
           kubectl describe pods -l '!workflows.argoproj.io/workflow'
       - if: ${{ failure() }}
-        name: MinIO/MySQL logs
+        name: MinIO/MySQL/PostgreSQL logs
         run: kubectl logs -l '!workflows.argoproj.io/workflow' --prefix
       - if: ${{ failure() }}
         name: Controller/API logs
