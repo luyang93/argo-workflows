@@ -11,9 +11,9 @@ endif
 # work dir
 WD                    := $(shell echo "`pwd`/client")
 
+# https://vsupalov.com/docker-shared-permissions/#set-the-docker-user-when-running-your-container
 DOCKER = docker run --rm --user $(shell id -u):$(shell id -g) -v $(WD):/wd --workdir /wd
 MVN = $(DOCKER) -v $(HOME)/.m2:/root/.m2 -e JAVA_SDK_MAVEN_PASSWORD=${JAVA_SDK_MAVEN_PASSWORD} maven:3-openjdk-8 mvn -s settings.xml
-CHOWN = chown -R $(shell id -u):$(shell id -g)
 
 publish: generate
 	# https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-apache-maven-for-use-with-github-packages
@@ -74,8 +74,6 @@ else
 		--import-mappings VolumeDevice=io.kubernetes.client.openapi.models.V1VolumeDevice \
 		--import-mappings VolumeMount=io.kubernetes.client.openapi.models.V1VolumeMount \
 		--generate-alias-as-model
-	# https://vsupalov.com/docker-shared-permissions/#set-the-docker-user-when-running-your-container
-	$(CHOWN) $(WD) || sudo $(CHOWN) $(WD)
 	# adding kubernetes-client
 	cd client && sed 's/<dependencies>/<dependencies><dependency><groupId>io.kubernetes<\/groupId><artifactId>client-java<\/artifactId><version>14.0.1<\/version><\/dependency>/g' pom.xml > tmp && mv tmp pom.xml
 endif

@@ -7,8 +7,8 @@ endif
 # work dir
 WD := $(shell echo "`pwd`/client")
 
+# https://vsupalov.com/docker-shared-permissions/#set-the-docker-user-when-running-your-container
 DOCKER = docker run --rm --user $(shell id -u):$(shell id -g) -v $(WD):/wd --workdir /wd
-CHOWN = chown -R $(shell id -u):$(shell id -g)
 
 publish: generate
 	pip install setuptools twine build
@@ -46,8 +46,6 @@ else
 		--global-property modelTests=false \
  		--global-property packageName=argo_workflows \
 		--generate-alias-as-model
-	# https://vsupalov.com/docker-shared-permissions/#set-the-docker-user-when-running-your-container
-	$(CHOWN) $(WD) || sudo $(CHOWN) $(WD)
 endif
 
 install:
