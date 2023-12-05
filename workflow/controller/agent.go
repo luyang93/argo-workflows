@@ -2,6 +2,7 @@ package controller
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -128,9 +129,32 @@ func (woc *wfOperationCtx) createAgentPod(ctx context.Context) (*apiv1.Pod, erro
 		return nil, err
 	}
 
-	pluginSidecars, pluginVolumes, err := woc.getExecutorPlugins(ctx)
+	pluginNamesSidecars, pluginNamesVolumes, err := woc.getNamesExecutorPlugins(ctx)
 	if err != nil {
 		return nil, err
+	}
+
+	var pluginSidecars []apiv1.Container
+	var pluginVolumes []apiv1.Volume
+	for _, template := range woc.wf.Spec.Templates {
+		if template.Plugin != nil {
+			p := &wfv1.Object{}
+			err = json.Unmarshal(template.Plugin.Value, p)
+			if err == nil {
+				var data map[string]interface{}
+				err := json.Unmarshal(p.Value, &data)
+				if err == nil {
+					for k, _ := range data {
+						if sidecar, ok := pluginNamesSidecars[k]; ok {
+							pluginSidecars = append(pluginSidecars, sidecar)
+						}
+						if volume, ok := pluginNamesVolumes[k]; ok {
+							pluginVolumes = append(pluginVolumes, volume)
+						}
+					}
+				}
+			}
+		}
 	}
 
 	envVars := []apiv1.EnvVar{
@@ -261,14 +285,15 @@ func (woc *wfOperationCtx) createAgentPod(ctx context.Context) (*apiv1.Pod, erro
 	return created, nil
 }
 
-func (woc *wfOperationCtx) getExecutorPlugins(ctx context.Context) ([]apiv1.Container, []apiv1.Volume, error) {
-	var sidecars []apiv1.Container
-	var volumes []apiv1.Volume
+func (woc *wfOperationCtx) getNamesExecutorPlugins(ctx context.Context) (map[string]apiv1.Container, map[string]apiv1.Volume, error) {
+	var sidecars = make(map[string]apiv1.Container)
+	var volumes = make(map[string]apiv1.Volume)
 	namespaces := map[string]bool{} // de-dupes executorPlugins when their namespaces are the same
 	namespaces[woc.controller.namespace] = true
 	namespaces[woc.wf.Namespace] = true
 	for namespace := range namespaces {
 		for _, plug := range woc.controller.executorPlugins[namespace] {
+			n := plug.ObjectMeta.Name
 			s := plug.Spec.Sidecar
 			c := s.Container.DeepCopy()
 			c.VolumeMounts = append(c.VolumeMounts, apiv1.VolumeMount{
@@ -283,12 +308,18 @@ func (woc *wfOperationCtx) getExecutorPlugins(ctx context.Context) ([]apiv1.Cont
 				if err != nil {
 					return nil, nil, err
 				}
-				volumes = append(volumes, *volume)
+				volumes[n] = *volume
 				c.VolumeMounts = append(c.VolumeMounts, *volumeMount)
 			}
-			sidecars = append(sidecars, *c)
+			sidecars[n] = *c
 		}
 	}
+	return sidecars, volumes, nil
+}
+
+func (woc *wfOperationCtx) filterExecutorPlugins(ctx context.Context) ([]apiv1.Container, []apiv1.Volume, error) {
+	var sidecars []apiv1.Container
+	var volumes []apiv1.Volume
 	return sidecars, volumes, nil
 }
 
